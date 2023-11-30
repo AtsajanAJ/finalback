@@ -2,6 +2,7 @@ const sql = require('./db');
 
 const Ingredients = function(ingredients){
     this.text = ingredients.text
+    this.quantity = ingredients.quantity
 }
 
 // Ingredients.create = (newIngredeint, result)=>{
@@ -16,7 +17,7 @@ const Ingredients = function(ingredients){
 // };
 
 Ingredients.create = (newIngredient, result) => {
-    sql.query('INSERT INTO ingredients (text) VALUES (?)', [newIngredient.text], (err, res) => {
+    sql.query('INSERT INTO ingredients (text, quantity) VALUES (?, ?)', [newIngredient.text , newIngredient.quantity], (err, res) => {
         if (err) {
             console.log('Error: ', err);
             result(err, null);
@@ -70,7 +71,7 @@ Ingredients.deleteById = (id, result)=>{
 };
 
 Ingredients.updateById = (id, updateIngredient, result) => {
-    sql.query('UPDATE ingredients SET text = ? WHERE id = ?', [updateIngredient.text, id], (err, res) => {
+    sql.query('UPDATE ingredients SET text = ? ,quantity = ? WHERE id = ?', [updateIngredient.text,updateIngredient.quantity , id], (err, res) => {
         if (err) {
             console.log('Error: ' + err);
             result(err, null);

@@ -7,7 +7,8 @@ const createIngredients = (req, res) => {
     }
 
     const newIngredeint = {
-        text: req.body.text
+        text: req.body.text,
+        quantity: req.body.quantity
     };
 
     Ingredients.create(newIngredeint,(err, data)=>{
@@ -52,7 +53,8 @@ const updateIngredeint = (req, res)=>{
     }
 
     const updateIngredeint = new Ingredients({
-        text: req.body.text
+        text: req.body.text,
+        quantity: req.body.quantity
     });
 
     Ingredients.updateById(ingredeintId, updateIngredeint, (err, data)=>{
@@ -60,7 +62,7 @@ const updateIngredeint = (req, res)=>{
             if(err.kind === 'not_found'){
                 res.status(404).send({ message: `ingredeint with id ${ingredeintId} not found`})
             }else{
-                res.status(500).send({ message: `Error updating ingredeint with id ${ingredeintId}`})
+                res.status(500).send({ message: `Error updating ingredient with id ${ingredeintId}`})
             }
         }else{
             res.send(data);
