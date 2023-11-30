@@ -9,7 +9,7 @@ const dbConfig = require('../config/db.config');
 //     database: dbConfig.DB
 // });
 
-db.js
+// db.js
 require("dotenv").config()
 const connection = mysql.createConnection(process.env.DATABASE_URL)
 
